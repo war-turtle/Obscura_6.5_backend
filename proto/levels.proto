@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package levels;
+
+option go_package = "pbLevels";
+
+service Level{
+    rpc GetLevels(LevelRequest) returns (LevelResponse) {}
+}
+
+message LevelResponse{
+    int32 id = 1;
+}
+
+message LevelRequest{
+    int32 id = 1;
+}
