@@ -11,6 +11,7 @@ require (
 	github.com/dgryski/go-sip13 v0.0.0-20190329191031-25c5027a8c7b // indirect
 	github.com/go-delve/delve v1.2.0 // indirect
 	github.com/golang/mock v1.3.1 // indirect
+	github.com/golang/protobuf v1.3.1
 	github.com/google/pprof v0.0.0-20190515194954-54271f7e092f // indirect
 	github.com/kisielk/errcheck v1.2.0 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
@@ -51,7 +52,4 @@ require (
 	google.golang.org/genproto v0.0.0-20190530194941-fb225487d101 // indirect
 	google.golang.org/grpc v1.21.1
 	honnef.co/go/tools v0.0.0-20190604153307-63e9ff576adb // indirect
-	obscura-proto v0.0.0
 )
-
-replace obscura-proto => ../proto

@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	pbPlayers "obscura-proto/players"
+	pbPlayers "obscura-players-backend/proto"
 	"google.golang.org/grpc"
 )
 

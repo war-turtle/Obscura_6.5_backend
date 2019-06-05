@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pbLevels "obscura-proto/levels"
+	pbLevels "obscura-levels-backend/proto"
 	"google.golang.org/grpc"
 )
 
