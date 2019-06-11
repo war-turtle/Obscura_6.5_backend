@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package users;
+
+option go_package = "pbUsers";
+
+service User {
+    rpc SignIn(SignInRequest) returns (SignInResponse) {}
+}
+
+message SignInRequest {
+    string id_token = 1;
+}
+
+message SignInResponse {
+    string name = 1;
+    string email = 2;
+}
