@@ -5,14 +5,21 @@ package users;
 option go_package = "pbUsers";
 
 service User {
-    rpc SignIn(SignInRequest) returns (SignInResponse) {}
+    rpc SignIn(SignInRequest) returns (JwtResponse) {}
+    rpc OnBoard(OnBoardRequest) returns (JwtResponse) {}
 }
 
 message SignInRequest {
     string id_token = 1;
 }
 
-message SignInResponse {
-    string name = 1;
-    string email = 2;
+message JwtResponse {
+    string jwt = 1;
+}
+
+message OnBoardRequest {
+    string username = 1;
+    string college = 2;
+    string phone = 3;
+    string email = 4;
 }

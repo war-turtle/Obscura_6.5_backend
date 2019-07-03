@@ -63,47 +63,102 @@ func (m *SignInRequest) GetIdToken() string {
 	return ""
 }
 
-type SignInResponse struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Email                string   `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+type JwtResponse struct {
+	Jwt                  string   `protobuf:"bytes,1,opt,name=jwt,proto3" json:"jwt,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *SignInResponse) Reset()         { *m = SignInResponse{} }
-func (m *SignInResponse) String() string { return proto.CompactTextString(m) }
-func (*SignInResponse) ProtoMessage()    {}
-func (*SignInResponse) Descriptor() ([]byte, []int) {
+func (m *JwtResponse) Reset()         { *m = JwtResponse{} }
+func (m *JwtResponse) String() string { return proto.CompactTextString(m) }
+func (*JwtResponse) ProtoMessage()    {}
+func (*JwtResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_030765f334c86cea, []int{1}
 }
 
-func (m *SignInResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SignInResponse.Unmarshal(m, b)
+func (m *JwtResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_JwtResponse.Unmarshal(m, b)
 }
-func (m *SignInResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SignInResponse.Marshal(b, m, deterministic)
+func (m *JwtResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_JwtResponse.Marshal(b, m, deterministic)
 }
-func (m *SignInResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SignInResponse.Merge(m, src)
+func (m *JwtResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JwtResponse.Merge(m, src)
 }
-func (m *SignInResponse) XXX_Size() int {
-	return xxx_messageInfo_SignInResponse.Size(m)
+func (m *JwtResponse) XXX_Size() int {
+	return xxx_messageInfo_JwtResponse.Size(m)
 }
-func (m *SignInResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_SignInResponse.DiscardUnknown(m)
+func (m *JwtResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_JwtResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SignInResponse proto.InternalMessageInfo
+var xxx_messageInfo_JwtResponse proto.InternalMessageInfo
 
-func (m *SignInResponse) GetName() string {
+func (m *JwtResponse) GetJwt() string {
 	if m != nil {
-		return m.Name
+		return m.Jwt
 	}
 	return ""
 }
 
-func (m *SignInResponse) GetEmail() string {
+type OnBoardRequest struct {
+	Username             string   `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	College              string   `protobuf:"bytes,2,opt,name=college,proto3" json:"college,omitempty"`
+	Phone                string   `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
+	Email                string   `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OnBoardRequest) Reset()         { *m = OnBoardRequest{} }
+func (m *OnBoardRequest) String() string { return proto.CompactTextString(m) }
+func (*OnBoardRequest) ProtoMessage()    {}
+func (*OnBoardRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_030765f334c86cea, []int{2}
+}
+
+func (m *OnBoardRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OnBoardRequest.Unmarshal(m, b)
+}
+func (m *OnBoardRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OnBoardRequest.Marshal(b, m, deterministic)
+}
+func (m *OnBoardRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OnBoardRequest.Merge(m, src)
+}
+func (m *OnBoardRequest) XXX_Size() int {
+	return xxx_messageInfo_OnBoardRequest.Size(m)
+}
+func (m *OnBoardRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OnBoardRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OnBoardRequest proto.InternalMessageInfo
+
+func (m *OnBoardRequest) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
+func (m *OnBoardRequest) GetCollege() string {
+	if m != nil {
+		return m.College
+	}
+	return ""
+}
+
+func (m *OnBoardRequest) GetPhone() string {
+	if m != nil {
+		return m.Phone
+	}
+	return ""
+}
+
+func (m *OnBoardRequest) GetEmail() string {
 	if m != nil {
 		return m.Email
 	}
@@ -112,24 +167,29 @@ func (m *SignInResponse) GetEmail() string {
 
 func init() {
 	proto.RegisterType((*SignInRequest)(nil), "users.SignInRequest")
-	proto.RegisterType((*SignInResponse)(nil), "users.SignInResponse")
+	proto.RegisterType((*JwtResponse)(nil), "users.JwtResponse")
+	proto.RegisterType((*OnBoardRequest)(nil), "users.OnBoardRequest")
 }
 
 func init() { proto.RegisterFile("users.proto", fileDescriptor_030765f334c86cea) }
 
 var fileDescriptor_030765f334c86cea = []byte{
-	// 165 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2e, 0x2d, 0x4e, 0x2d,
-	0x2a, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x05, 0x73, 0x94, 0xb4, 0xb8, 0x78, 0x83,
-	0x33, 0xd3, 0xf3, 0x3c, 0xf3, 0x82, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0x24, 0xb9, 0x38,
-	0x32, 0x53, 0xe2, 0x4b, 0xf2, 0xb3, 0x53, 0xf3, 0x24, 0x18, 0x15, 0x18, 0x35, 0x38, 0x83, 0xd8,
-	0x33, 0x53, 0x42, 0x40, 0x5c, 0x25, 0x2b, 0x2e, 0x3e, 0x98, 0xda, 0xe2, 0x82, 0xfc, 0xbc, 0xe2,
-	0x54, 0x21, 0x21, 0x2e, 0x96, 0xbc, 0xc4, 0xdc, 0x54, 0xa8, 0x42, 0x30, 0x5b, 0x48, 0x84, 0x8b,
-	0x35, 0x35, 0x37, 0x31, 0x33, 0x47, 0x82, 0x09, 0x2c, 0x08, 0xe1, 0x18, 0xd9, 0x73, 0xb1, 0x84,
-	0x16, 0xa7, 0x16, 0x09, 0x99, 0x73, 0xb1, 0x41, 0xcc, 0x10, 0x12, 0xd1, 0x83, 0x38, 0x07, 0xc5,
-	0x7a, 0x29, 0x51, 0x34, 0x51, 0x88, 0x45, 0x4a, 0x0c, 0x4e, 0x9c, 0x51, 0xec, 0x05, 0x49, 0x20,
-	0x23, 0x8a, 0x93, 0xd8, 0xc0, 0x3e, 0x30, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xac, 0x5a, 0xe9,
-	0x3a, 0xd0, 0x00, 0x00, 0x00,
+	// 235 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x90, 0xbd, 0x4e, 0xc3, 0x30,
+	0x14, 0x85, 0x29, 0xfd, 0x71, 0x7b, 0x2b, 0x10, 0xba, 0x2a, 0x92, 0xe9, 0x02, 0xf2, 0x84, 0x18,
+	0x3a, 0x00, 0xe2, 0x01, 0xba, 0xc1, 0x82, 0x14, 0x60, 0x61, 0x41, 0x29, 0xb9, 0x0a, 0x86, 0xc4,
+	0x36, 0xb6, 0xa3, 0xbc, 0x3e, 0xf2, 0x0f, 0x88, 0x48, 0xdd, 0xf2, 0x1d, 0x9d, 0xf8, 0xf8, 0x33,
+	0x2c, 0x3b, 0x47, 0xd6, 0x6d, 0x8c, 0xd5, 0x5e, 0xe3, 0x34, 0x82, 0xb8, 0x82, 0xa3, 0x27, 0x59,
+	0xab, 0x7b, 0x55, 0xd0, 0x77, 0x47, 0xce, 0xe3, 0x19, 0xcc, 0x65, 0xf5, 0xe6, 0xf5, 0x17, 0x29,
+	0x3e, 0xba, 0x18, 0x5d, 0x2e, 0x0a, 0x26, 0xab, 0xe7, 0x80, 0xe2, 0x1c, 0x96, 0x0f, 0xbd, 0x2f,
+	0xc8, 0x19, 0xad, 0x1c, 0xe1, 0x09, 0x8c, 0x3f, 0x7b, 0x9f, 0x4b, 0xe1, 0x53, 0x58, 0x38, 0x7e,
+	0x54, 0x5b, 0x5d, 0xda, 0xea, 0xf7, 0xb4, 0x35, 0xcc, 0xc3, 0x8e, 0x2a, 0x5b, 0xca, 0xc5, 0x3f,
+	0x46, 0x0e, 0xec, 0x5d, 0x37, 0x0d, 0xd5, 0xc4, 0x0f, 0xd3, 0x50, 0x46, 0x5c, 0xc1, 0xd4, 0x7c,
+	0x68, 0x45, 0x7c, 0x1c, 0xf3, 0x04, 0x21, 0xa5, 0xb6, 0x94, 0x0d, 0x9f, 0xa4, 0x34, 0xc2, 0xb5,
+	0x87, 0xc9, 0x8b, 0x23, 0x8b, 0xb7, 0x30, 0x4b, 0x22, 0xb8, 0xda, 0x24, 0xcf, 0x81, 0xd7, 0x1a,
+	0x73, 0xfa, 0xcf, 0x40, 0x1c, 0xe0, 0x1d, 0xb0, 0x7c, 0x63, 0x3c, 0xcd, 0x85, 0xa1, 0xc1, 0xfe,
+	0xff, 0xb6, 0x8b, 0x57, 0x66, 0x76, 0x61, 0xd7, 0xed, 0x66, 0xf1, 0x3d, 0x6f, 0x7e, 0x02, 0x00,
+	0x00, 0xff, 0xff, 0x58, 0x2a, 0xc7, 0x1e, 0x5e, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -144,7 +204,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserClient interface {
-	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error)
+	SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*JwtResponse, error)
+	OnBoard(ctx context.Context, in *OnBoardRequest, opts ...grpc.CallOption) (*JwtResponse, error)
 }
 
 type userClient struct {
@@ -155,9 +216,18 @@ func NewUserClient(cc *grpc.ClientConn) UserClient {
 	return &userClient{cc}
 }
 
-func (c *userClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*SignInResponse, error) {
-	out := new(SignInResponse)
+func (c *userClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc.CallOption) (*JwtResponse, error) {
+	out := new(JwtResponse)
 	err := c.cc.Invoke(ctx, "/users.User/SignIn", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) OnBoard(ctx context.Context, in *OnBoardRequest, opts ...grpc.CallOption) (*JwtResponse, error) {
+	out := new(JwtResponse)
+	err := c.cc.Invoke(ctx, "/users.User/OnBoard", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -166,15 +236,19 @@ func (c *userClient) SignIn(ctx context.Context, in *SignInRequest, opts ...grpc
 
 // UserServer is the server API for User service.
 type UserServer interface {
-	SignIn(context.Context, *SignInRequest) (*SignInResponse, error)
+	SignIn(context.Context, *SignInRequest) (*JwtResponse, error)
+	OnBoard(context.Context, *OnBoardRequest) (*JwtResponse, error)
 }
 
 // UnimplementedUserServer can be embedded to have forward compatible implementations.
 type UnimplementedUserServer struct {
 }
 
-func (*UnimplementedUserServer) SignIn(ctx context.Context, req *SignInRequest) (*SignInResponse, error) {
+func (*UnimplementedUserServer) SignIn(ctx context.Context, req *SignInRequest) (*JwtResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignIn not implemented")
+}
+func (*UnimplementedUserServer) OnBoard(ctx context.Context, req *OnBoardRequest) (*JwtResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OnBoard not implemented")
 }
 
 func RegisterUserServer(s *grpc.Server, srv UserServer) {
@@ -199,6 +273,24 @@ func _User_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_OnBoard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OnBoardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).OnBoard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/users.User/OnBoard",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).OnBoard(ctx, req.(*OnBoardRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _User_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "users.User",
 	HandlerType: (*UserServer)(nil),
@@ -206,6 +298,10 @@ var _User_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignIn",
 			Handler:    _User_SignIn_Handler,
+		},
+		{
+			MethodName: "OnBoard",
+			Handler:    _User_OnBoard_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
