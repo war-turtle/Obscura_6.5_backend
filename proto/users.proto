@@ -4,11 +4,6 @@ package users;
 
 option go_package = "pbUsers";
 
-service User {
-    rpc SignIn(SignInRequest) returns (JwtResponse) {}
-    rpc OnBoard(OnBoardRequest) returns (JwtResponse) {}
-}
-
 message SignInRequest {
     string id_token = 1;
 }
@@ -22,4 +17,64 @@ message OnBoardRequest {
     string college = 2;
     string phone = 3;
     string email = 4;
+}
+
+message GetUserRequest {
+    string userID = 1;
+}
+
+message CreateTeamRequest {
+    string name = 1;
+    string creatorID = 2;
+}
+
+message TeamInfo {
+    string ID = 1;
+    string name = 2;
+    int32 level = 3;
+}
+
+message GetTeamRequest {
+    string teamID = 1;
+}
+
+message Requests {
+    string ID = 1; 
+    string name = 2;
+}
+
+message GetTeamResponse {
+    string ID = 1; 
+    string name = 2;
+    int32 level = 3;
+    string creatorID = 4;
+    repeated Requests requests = 5;
+}
+
+message GetAllTeamsRequest {
+    int32 page = 1;
+}
+
+message GetAllTeamsResponse {
+    repeated TeamInfo teams = 1;
+    int32 total = 2;
+}
+
+message JoinTeamRequest {
+    string userID = 1;
+    string teamID = 2;
+}
+
+message Empty {
+}
+
+service User {
+    rpc SignIn(SignInRequest) returns (JwtResponse) {}
+    rpc OnBoard(OnBoardRequest) returns (JwtResponse) {}
+    rpc GetUser(GetUserRequest) returns (JwtResponse) {}
+    rpc CreateTeam(CreateTeamRequest) returns (JwtResponse) {}
+    rpc GetTeam(GetTeamRequest) returns (GetTeamResponse) {}
+    rpc GetAllTeams(GetAllTeamsRequest) returns(GetAllTeamsResponse) {}
+    rpc JoinTeam(JoinTeamRequest) returns (Empty) {}
+    rpc AcceptUser(JoinTeamRequest) returns (Empty) {}
 }

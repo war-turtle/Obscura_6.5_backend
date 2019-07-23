@@ -10,6 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"obscura-users-backend/db"
 	"obscura-users-backend/jwt"
@@ -18,7 +19,7 @@ import (
 )
 
 func (*server) SignIn(ctx context.Context, req *pbUsers.SignInRequest) (*pbUsers.JwtResponse, error) {
-	response, err := http.Get("https://oauth2.googleapis.com/tokeninfo?id_token=" + req.IdToken)
+	response, err := http.Get("https://oauth2.googleapis.com/tokeninfo?id_token=" + req.GetIdToken())
 	if err != nil {
 		return nil, status.Error(codes.Unknown, "can't reach google server")
 	}
@@ -36,21 +37,20 @@ func (*server) SignIn(ctx context.Context, req *pbUsers.SignInRequest) (*pbUsers
 
 	var user db.User
 	filter := bson.D{{"email", email}}
-	if err := db.Collection.FindOne(context.TODO(), filter).Decode(&user); err != nil {
+	if err := db.UserCollection.FindOne(context.TODO(), filter).Decode(&user); err != nil {
 		if(err == mongo.ErrNoDocuments){
 			username := data["name"].(string);
 
 			user = db.User{
 				Username: username,
 				Email: email,
-				Phone: "",
-				College: "",
-				Onboard: false,
 			}
 
-			if _, err := db.Collection.InsertOne(context.TODO(), &user); err != nil{
+			res, err := db.UserCollection.InsertOne(context.TODO(), &user);
+			if err != nil{
 				return nil, status.Error(codes.Unknown, "internal server error")
 			}
+			user.ID = res.InsertedID.(primitive.ObjectID)
 
 		} else {
 			log.Fatalln(err)

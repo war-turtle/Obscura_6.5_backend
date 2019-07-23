@@ -1,6 +1,7 @@
 package jwt
 
 import (
+	"log"
 	"github.com/dgrijalva/jwt-go"
 )
 
@@ -10,7 +11,12 @@ func ValidateJwt(token string, secret string) bool {
 		return []byte(secret), nil
 	})
 
-	if !tkn.Valid || err != nil {
+	if err != nil {
+		log.Println(err)
+		return false 
+	}
+
+	if !tkn.Valid {
 		return false
 	}
 

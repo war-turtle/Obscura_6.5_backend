@@ -8,14 +8,18 @@ import (
 
 	"google.golang.org/grpc"
 	"obscura-users-backend/db"
+	"obscura-users-backend/team"
+	configuration "obscura-users-backend/config"
 )
 
-type server struct{}
+type server struct{
+	team.TeamService
+}
 
-var config = GetConfig()
+var config = configuration.GetConfig()
 
 func init() {
-	go db.Connect(config["mongoURI"])
+	db.Connect(config["mongoURI"])
 }
 
 func main() {

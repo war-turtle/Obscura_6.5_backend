@@ -14,7 +14,7 @@ type Claims struct {
 
 // CreateNewUserJwt function to create a new jwt token for user information
 func CreateNewUserJwt(user db.User, secret string) (string, error) {
-	expirationTime := time.Now().Add(60 * time.Minute)
+	expirationTime := time.Now().Add(60 * time.Hour)
 	claims := &Claims{
 		User: user,
 		StandardClaims: jwt.StandardClaims{

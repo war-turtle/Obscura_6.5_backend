@@ -9,7 +9,10 @@ import (
 )
 
 // variable to access collections
-var Collection *mongo.Collection
+var (
+	UserCollection *mongo.Collection
+	TeamCollection *mongo.Collection
+)
 
 // Connect function to connect to mongodb instance
 func Connect(uri string) {
@@ -25,7 +28,8 @@ func Connect(uri string) {
 		log.Fatal(err)
 	}
 
-	Collection = client.Database("obscura").Collection("users")
+	UserCollection = client.Database("obscura").Collection("users")
+	TeamCollection = client.Database("obscura").Collection("teams")
 
 	log.Println("Connected")
 }
