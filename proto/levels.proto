@@ -5,7 +5,7 @@ package levels;
 option go_package = "pbLevels";
 
 service Level{
-    rpc GetLevels(LevelRequest) returns (LevelResponse) {}
+    rpc GetLevel(LevelRequest) returns (LevelResponse) {}
 }
 
 message LevelResponse{

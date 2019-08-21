@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  users:
+    build:
+      context: ./users
+      dockerfile: dev.Dockerfile
+    image: obscura-users-dev
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./users:/app"
+    networks:
+      - "obscura"
+  levels:
+    build:
+      context: ./levels
+      dockerfile: dev.Dockerfile
+    image: obscura-levels-dev
+    ports:
+      - "9091:9091"
+    volumes:
+      - "./levels:/app"
+    networks:
+      - "obscura"
+
+networks:
+  obscura:
+    driver: bridge

@@ -1,31 +1,36 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net"
 
 	pbLevels "obscura-levels-backend/proto"
+
 	"google.golang.org/grpc"
+	"obscura-levels-backend/db"
+	configuration "obscura-levels-backend/config"
 )
 
 type server struct{}
 
-func (*server) GetLevels(ctx context.Context, req *pbLevels.LevelRequest) (*pbLevels.LevelResponse, error) {
-	log.Printf("Received: %v", req.Id)
-	return &pbLevels.LevelResponse{Id: 1}, nil
+var config = configuration.GetConfig()
+
+func init() {
+	db.Connect(config["mongoURI"])
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":8000")
+	lis, err := net.Listen("tcp", ":"+config["port"])
 	if err != nil {
-		log.Fatalf("Can't listen %v", err)
+		log.Fatalf("can't listen %v", err)
+	} else {
+		log.Println("Server is listen on port " + config["port"])
 	}
 
-	s := grpc.NewServer()
-
+	log.Println("server started")
+	s := grpc.NewServer(grpc.UnaryInterceptor(unaryInterceptor))
 	pbLevels.RegisterLevelServer(s, &server{})
 	if err := s.Serve(lis); err != nil {
-		log.Fatalf("Failed to serve: %v", err)
+		log.Fatalf("failed to serve %v", err)
 	}
 }
