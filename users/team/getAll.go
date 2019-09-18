@@ -31,7 +31,7 @@ func (TeamService) GetAllTeams(ctx context.Context, req *pbUsers.GetAllTeamsRequ
 		if err := cur.Decode(&elem); err != nil {
 			log.Println(err)
 		}
-		teams = append(teams, &pbUsers.TeamInfo{ID: elem["_id"].(primitive.ObjectID).Hex(), Name: elem["name"].(string), Level: elem["level"].(int32)})
+		teams = append(teams, &pbUsers.TeamInfo{ID: elem["_id"].(primitive.ObjectID).Hex(), Name: elem["name"].(string), Level: elem["level"].(int32), ImageNumber: elem["imagenumber"].(int32) })
 	}
 
 	totalTeams, err := db.TeamCollection.CountDocuments(context.TODO(), bson.D{})

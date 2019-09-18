@@ -38,6 +38,7 @@ func (TeamService) CreateTeam(ctx context.Context, req *pbUsers.CreateTeamReques
 			team = db.Team {
 				Name: req.GetName(),
 				CreatorID: creatorID,
+				ImageNumber: req.GetImageNumber(),
 				Requests: []db.Requests{},
 			}
 	

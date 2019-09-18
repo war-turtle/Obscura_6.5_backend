@@ -37,5 +37,6 @@ func (TeamService) GetTeam(ctx context.Context, req *pbUsers.GetTeamRequest) (*p
 		Level: int32(team.Level),
 		CreatorID: team.CreatorID.Hex(),
 		Requests: requests,
+		ImageNumber: team.ImageNumber,
 	}, nil
 }

@@ -24,6 +24,7 @@ func (*server) OnBoard(ctx context.Context, req *pbUsers.OnBoardRequest) (*pbUse
 				{ "college", req.College },
 				{ "phone", req.Phone },
 				{ "onboard", true },
+				{ "imagenumber", req.ImageNumber},
 			},
 		},
 	}

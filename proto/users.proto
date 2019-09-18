@@ -17,6 +17,7 @@ message OnBoardRequest {
     string college = 2;
     string phone = 3;
     string email = 4;
+    int32 imageNumber = 5;
 }
 
 message GetUserRequest {
@@ -26,12 +27,14 @@ message GetUserRequest {
 message CreateTeamRequest {
     string name = 1;
     string creatorID = 2;
+    int32 imageNumber = 3;
 }
 
 message TeamInfo {
     string ID = 1;
     string name = 2;
     int32 level = 3;
+    int32 imageNumber = 4;
 }
 
 message GetTeamRequest {
@@ -49,6 +52,7 @@ message GetTeamResponse {
     int32 level = 3;
     string creatorID = 4;
     repeated Requests requests = 5;
+    int32 imageNumber = 6;
 }
 
 message GetAllTeamsRequest {
