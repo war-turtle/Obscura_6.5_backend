@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"obscura-users-backend/db"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"google.golang.org/grpc/codes"
@@ -25,13 +26,13 @@ func (TeamService) JoinTeam(ctx context.Context, req *pbUsers.JoinTeamRequest) (
 	}
 
 	var user db.User
-	filter := bson.D{{ "_id", userID }}
+	filter := bson.D{{"_id", userID}}
 	if err := db.UserCollection.FindOne(context.TODO(), filter).Decode(&user); err != nil {
-		return nil, status.Error(codes.Unknown, "internal server error")	
+		return nil, status.Error(codes.Unknown, "internal server error")
 	}
 
 	var team db.Team
-	filter = bson.D{{ "_id", teamID }}
+	filter = bson.D{{"_id", teamID}}
 	if err := db.TeamCollection.FindOne(context.TODO(), filter).Decode(&team); err != nil {
 		return nil, status.Error(codes.Unknown, "internal server error")
 	}
@@ -42,7 +43,7 @@ func (TeamService) JoinTeam(ctx context.Context, req *pbUsers.JoinTeamRequest) (
 		}
 	}
 
-	update := bson.D{{ "$push", bson.D{{ "requests", bson.D{{ "id" , user.ID}, { "name" , user.Username }} }} }}
+	update := bson.D{{"$push", bson.D{{"requests", bson.D{{"id", user.ID}, {"name", user.Username}, {"imagenumber", user.ImageNumber}}}}}}
 	if _, err := db.TeamCollection.UpdateOne(context.TODO(), filter, update); err != nil {
 		return nil, status.Error(codes.Unknown, "internal server error")
 	}

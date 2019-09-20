@@ -44,6 +44,7 @@ message GetTeamRequest {
 message Requests {
     string ID = 1; 
     string name = 2;
+    int32 imageNumber = 3;
 }
 
 message GetTeamResponse {

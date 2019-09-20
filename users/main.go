@@ -6,13 +6,14 @@ import (
 
 	pbUsers "obscura-users-backend/proto"
 
-	"google.golang.org/grpc"
+	configuration "obscura-users-backend/config"
 	"obscura-users-backend/db"
 	"obscura-users-backend/team"
-	configuration "obscura-users-backend/config"
+
+	"google.golang.org/grpc"
 )
 
-type server struct{
+type server struct {
 	team.TeamService
 }
 
