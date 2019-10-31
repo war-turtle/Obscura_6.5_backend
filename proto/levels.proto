@@ -7,6 +7,15 @@ option go_package = "pbLevels";
 service Level{
     rpc GetLevel(LevelRequest) returns (LevelResponse) {}
     rpc CheckAnswer(AnswerRequest) returns (AnswerResponse) {}
+    rpc GetAllLevel(AllLevelRequest) returns (AllLevelResponse) {}
+}
+
+message AllLevelRequest{
+    string teamID = 1;
+}
+
+message AllLevelResponse{
+    int32 total = 1;
 }
 
 message AnswerRequest{
