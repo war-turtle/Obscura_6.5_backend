@@ -4,13 +4,14 @@ import (
 	"context"
 	"log"
 
-    "go.mongodb.org/mongo-driver/mongo"
-    "go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // variable to access collections
 var (
 	LevelCollection *mongo.Collection
+	TeamCollection  *mongo.Collection
 )
 
 // Connect function to connect to mongodb instance
@@ -28,6 +29,7 @@ func Connect(uri string) {
 	}
 
 	LevelCollection = client.Database("obscura").Collection("levels")
+	TeamCollection = client.Database("obscura").Collection("teams")
 
 	log.Println("Connected")
 }

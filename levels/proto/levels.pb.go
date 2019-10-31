@@ -24,8 +24,107 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type AnswerRequest struct {
+	Answer               string   `protobuf:"bytes,1,opt,name=answer,proto3" json:"answer,omitempty"`
+	Number               int32    `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	TeamID               string   `protobuf:"bytes,3,opt,name=teamID,proto3" json:"teamID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AnswerRequest) Reset()         { *m = AnswerRequest{} }
+func (m *AnswerRequest) String() string { return proto.CompactTextString(m) }
+func (*AnswerRequest) ProtoMessage()    {}
+func (*AnswerRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2dd466c55a41d32c, []int{0}
+}
+
+func (m *AnswerRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AnswerRequest.Unmarshal(m, b)
+}
+func (m *AnswerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AnswerRequest.Marshal(b, m, deterministic)
+}
+func (m *AnswerRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AnswerRequest.Merge(m, src)
+}
+func (m *AnswerRequest) XXX_Size() int {
+	return xxx_messageInfo_AnswerRequest.Size(m)
+}
+func (m *AnswerRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AnswerRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AnswerRequest proto.InternalMessageInfo
+
+func (m *AnswerRequest) GetAnswer() string {
+	if m != nil {
+		return m.Answer
+	}
+	return ""
+}
+
+func (m *AnswerRequest) GetNumber() int32 {
+	if m != nil {
+		return m.Number
+	}
+	return 0
+}
+
+func (m *AnswerRequest) GetTeamID() string {
+	if m != nil {
+		return m.TeamID
+	}
+	return ""
+}
+
+type AnswerResponse struct {
+	Valid                bool     `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *AnswerResponse) Reset()         { *m = AnswerResponse{} }
+func (m *AnswerResponse) String() string { return proto.CompactTextString(m) }
+func (*AnswerResponse) ProtoMessage()    {}
+func (*AnswerResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2dd466c55a41d32c, []int{1}
+}
+
+func (m *AnswerResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AnswerResponse.Unmarshal(m, b)
+}
+func (m *AnswerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AnswerResponse.Marshal(b, m, deterministic)
+}
+func (m *AnswerResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AnswerResponse.Merge(m, src)
+}
+func (m *AnswerResponse) XXX_Size() int {
+	return xxx_messageInfo_AnswerResponse.Size(m)
+}
+func (m *AnswerResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AnswerResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AnswerResponse proto.InternalMessageInfo
+
+func (m *AnswerResponse) GetValid() bool {
+	if m != nil {
+		return m.Valid
+	}
+	return false
+}
+
 type LevelResponse struct {
-	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Number               int32    `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Urlalias             string   `protobuf:"bytes,3,opt,name=urlalias,proto3" json:"urlalias,omitempty"`
+	Html                 string   `protobuf:"bytes,4,opt,name=html,proto3" json:"html,omitempty"`
+	Js                   string   `protobuf:"bytes,5,opt,name=js,proto3" json:"js,omitempty"`
+	Final                bool     `protobuf:"varint,6,opt,name=final,proto3" json:"final,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -35,7 +134,7 @@ func (m *LevelResponse) Reset()         { *m = LevelResponse{} }
 func (m *LevelResponse) String() string { return proto.CompactTextString(m) }
 func (*LevelResponse) ProtoMessage()    {}
 func (*LevelResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2dd466c55a41d32c, []int{0}
+	return fileDescriptor_2dd466c55a41d32c, []int{2}
 }
 
 func (m *LevelResponse) XXX_Unmarshal(b []byte) error {
@@ -56,15 +155,51 @@ func (m *LevelResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_LevelResponse proto.InternalMessageInfo
 
-func (m *LevelResponse) GetId() int32 {
+func (m *LevelResponse) GetNumber() int32 {
 	if m != nil {
-		return m.Id
+		return m.Number
 	}
 	return 0
 }
 
+func (m *LevelResponse) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *LevelResponse) GetUrlalias() string {
+	if m != nil {
+		return m.Urlalias
+	}
+	return ""
+}
+
+func (m *LevelResponse) GetHtml() string {
+	if m != nil {
+		return m.Html
+	}
+	return ""
+}
+
+func (m *LevelResponse) GetJs() string {
+	if m != nil {
+		return m.Js
+	}
+	return ""
+}
+
+func (m *LevelResponse) GetFinal() bool {
+	if m != nil {
+		return m.Final
+	}
+	return false
+}
+
 type LevelRequest struct {
 	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	TeamID               string   `protobuf:"bytes,2,opt,name=teamID,proto3" json:"teamID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -74,7 +209,7 @@ func (m *LevelRequest) Reset()         { *m = LevelRequest{} }
 func (m *LevelRequest) String() string { return proto.CompactTextString(m) }
 func (*LevelRequest) ProtoMessage()    {}
 func (*LevelRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2dd466c55a41d32c, []int{1}
+	return fileDescriptor_2dd466c55a41d32c, []int{3}
 }
 
 func (m *LevelRequest) XXX_Unmarshal(b []byte) error {
@@ -102,7 +237,16 @@ func (m *LevelRequest) GetId() int32 {
 	return 0
 }
 
+func (m *LevelRequest) GetTeamID() string {
+	if m != nil {
+		return m.TeamID
+	}
+	return ""
+}
+
 func init() {
+	proto.RegisterType((*AnswerRequest)(nil), "levels.AnswerRequest")
+	proto.RegisterType((*AnswerResponse)(nil), "levels.AnswerResponse")
 	proto.RegisterType((*LevelResponse)(nil), "levels.LevelResponse")
 	proto.RegisterType((*LevelRequest)(nil), "levels.LevelRequest")
 }
@@ -110,16 +254,26 @@ func init() {
 func init() { proto.RegisterFile("levels.proto", fileDescriptor_2dd466c55a41d32c) }
 
 var fileDescriptor_2dd466c55a41d32c = []byte{
-	// 129 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0xc9, 0x49, 0x2d, 0x4b,
-	0xcd, 0x29, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x83, 0xf0, 0x94, 0xe4, 0xb9, 0x78,
-	0x7d, 0x40, 0xac, 0xa0, 0xd4, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x21, 0x3e, 0x2e, 0xa6, 0xcc,
-	0x14, 0x09, 0x46, 0x05, 0x46, 0x0d, 0xd6, 0x20, 0xa6, 0xcc, 0x14, 0x25, 0x39, 0x2e, 0x1e, 0xa8,
-	0x82, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x74, 0x79, 0x23, 0x27, 0x2e, 0x56, 0xb0, 0xbc, 0x90, 0x25,
-	0x17, 0x87, 0x7b, 0x6a, 0x09, 0x84, 0x2d, 0xa2, 0x07, 0xb5, 0x0c, 0x59, 0xab, 0x94, 0x28, 0x9a,
-	0x28, 0xc4, 0x46, 0x25, 0x06, 0x27, 0xae, 0x28, 0x8e, 0x82, 0x24, 0xb0, 0x60, 0x71, 0x12, 0x1b,
-	0xd8, 0x7d, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9a, 0x6e, 0xe1, 0x83, 0xaf, 0x00, 0x00,
-	0x00,
+	// 295 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x51, 0x4d, 0x4b, 0xc3, 0x40,
+	0x14, 0x74, 0xd7, 0x26, 0xa4, 0xcf, 0x36, 0x87, 0xa5, 0x96, 0x25, 0xa7, 0x92, 0x83, 0xf4, 0xd4,
+	0x83, 0x82, 0xe0, 0x45, 0xf0, 0x03, 0x44, 0xf0, 0xb4, 0x17, 0xc1, 0xdb, 0xc6, 0x3e, 0x69, 0xea,
+	0xe6, 0xc3, 0x6c, 0x52, 0xef, 0xfe, 0x03, 0xff, 0xb1, 0xec, 0x47, 0x63, 0xda, 0xdb, 0x9b, 0x61,
+	0x76, 0x66, 0xde, 0x5b, 0x98, 0x28, 0xdc, 0xa1, 0xd2, 0xab, 0xba, 0xa9, 0xda, 0x8a, 0x85, 0x0e,
+	0xa5, 0xaf, 0x30, 0xbd, 0x2b, 0xf5, 0x37, 0x36, 0x02, 0xbf, 0x3a, 0xd4, 0x2d, 0x9b, 0x43, 0x28,
+	0x2d, 0xc1, 0xc9, 0x82, 0x2c, 0xc7, 0xc2, 0x23, 0xc3, 0x97, 0x5d, 0x91, 0x61, 0xc3, 0xe9, 0x82,
+	0x2c, 0x03, 0xe1, 0x91, 0xe1, 0x5b, 0x94, 0xc5, 0xf3, 0x23, 0x3f, 0x75, 0x7a, 0x87, 0xd2, 0x0b,
+	0x88, 0xf7, 0xc6, 0xba, 0xae, 0x4a, 0x8d, 0x6c, 0x06, 0xc1, 0x4e, 0xaa, 0x7c, 0x6d, 0x8d, 0x23,
+	0xe1, 0x40, 0xfa, 0x4b, 0x60, 0xfa, 0x62, 0xba, 0xf4, 0xba, 0xff, 0x24, 0x72, 0x90, 0xc4, 0x60,
+	0x54, 0xca, 0x02, 0x6d, 0xfe, 0x58, 0xd8, 0x99, 0x25, 0x10, 0x75, 0x8d, 0x92, 0x2a, 0x97, 0xda,
+	0xe7, 0xf7, 0xd8, 0xe8, 0x37, 0x6d, 0xa1, 0xf8, 0xc8, 0xe9, 0xcd, 0xcc, 0x62, 0xa0, 0x5b, 0xcd,
+	0x03, 0xcb, 0xd0, 0xad, 0x36, 0x9d, 0x3e, 0xf2, 0x52, 0x2a, 0x1e, 0xba, 0x4e, 0x16, 0xa4, 0xd7,
+	0x30, 0xf1, 0x95, 0xdc, 0x4d, 0x62, 0xa0, 0xbe, 0x76, 0x20, 0x68, 0xbe, 0x1e, 0xec, 0x4c, 0x87,
+	0x3b, 0x5f, 0xfe, 0x10, 0x08, 0xec, 0x43, 0x76, 0x03, 0xd1, 0x13, 0xb6, 0x6e, 0x9e, 0xad, 0xfc,
+	0xe5, 0x87, 0x9e, 0xc9, 0xf9, 0x11, 0xeb, 0x96, 0x4f, 0x4f, 0xd8, 0x2d, 0x9c, 0x3d, 0x6c, 0xf0,
+	0xfd, 0xd3, 0x5d, 0x8f, 0xf5, 0xba, 0x83, 0x6f, 0x4a, 0xe6, 0xc7, 0xf4, 0xfe, 0xfd, 0x3d, 0xbc,
+	0x45, 0x75, 0x66, 0x4d, 0x75, 0x16, 0xda, 0xcf, 0xbe, 0xfa, 0x0b, 0x00, 0x00, 0xff, 0xff, 0xf1,
+	0x2c, 0xe1, 0x47, 0xfc, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -135,6 +289,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type LevelClient interface {
 	GetLevel(ctx context.Context, in *LevelRequest, opts ...grpc.CallOption) (*LevelResponse, error)
+	CheckAnswer(ctx context.Context, in *AnswerRequest, opts ...grpc.CallOption) (*AnswerResponse, error)
 }
 
 type levelClient struct {
@@ -154,9 +309,19 @@ func (c *levelClient) GetLevel(ctx context.Context, in *LevelRequest, opts ...gr
 	return out, nil
 }
 
+func (c *levelClient) CheckAnswer(ctx context.Context, in *AnswerRequest, opts ...grpc.CallOption) (*AnswerResponse, error) {
+	out := new(AnswerResponse)
+	err := c.cc.Invoke(ctx, "/levels.Level/CheckAnswer", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LevelServer is the server API for Level service.
 type LevelServer interface {
 	GetLevel(context.Context, *LevelRequest) (*LevelResponse, error)
+	CheckAnswer(context.Context, *AnswerRequest) (*AnswerResponse, error)
 }
 
 // UnimplementedLevelServer can be embedded to have forward compatible implementations.
@@ -165,6 +330,9 @@ type UnimplementedLevelServer struct {
 
 func (*UnimplementedLevelServer) GetLevel(ctx context.Context, req *LevelRequest) (*LevelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLevel not implemented")
+}
+func (*UnimplementedLevelServer) CheckAnswer(ctx context.Context, req *AnswerRequest) (*AnswerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckAnswer not implemented")
 }
 
 func RegisterLevelServer(s *grpc.Server, srv LevelServer) {
@@ -189,6 +357,24 @@ func _Level_GetLevel_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Level_CheckAnswer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AnswerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LevelServer).CheckAnswer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/levels.Level/CheckAnswer",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LevelServer).CheckAnswer(ctx, req.(*AnswerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Level_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "levels.Level",
 	HandlerType: (*LevelServer)(nil),
@@ -196,6 +382,10 @@ var _Level_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLevel",
 			Handler:    _Level_GetLevel_Handler,
+		},
+		{
+			MethodName: "CheckAnswer",
+			Handler:    _Level_CheckAnswer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
