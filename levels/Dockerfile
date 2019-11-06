@@ -12,16 +12,16 @@ RUN go mod download
 COPY . .
 
 #Building the executable for linux only
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o users
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o levels
 
 FROM scratch
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /etc/passwd /etc/passwd
-COPY --from=builder /app/users  users
+COPY --from=builder /app/levels  levels
 USER appuser
 
-EXPOSE 9090
+EXPOSE 9091
 
 
-ENTRYPOINT ["./users"]
+ENTRYPOINT ["./levels"]
