@@ -28,8 +28,8 @@ func Connect(uri string) {
 		log.Fatal(err)
 	}
 
-	LevelCollection = client.Database("obscura").Collection("levels")
-	TeamCollection = client.Database("obscura").Collection("teams")
+	LevelCollection = client.Database("obscura7").Collection("levels")
+	TeamCollection = client.Database("obscura7").Collection("teams")
 
 	log.Println("Connected")
 }

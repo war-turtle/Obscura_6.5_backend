@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"time"
 
 	"obscura-levels-backend/db"
 
@@ -33,7 +34,7 @@ func (server) CheckAnswer(ctx context.Context, req *pbLevels.AnswerRequest) (*pb
 				return nil, status.Error(codes.Unknown, "internal server error")
 			}
 			if int32(team.Level) == req.GetNumber() {
-				update := bson.D{{"$inc", bson.D{{"level", 1}}}}
+				update := bson.D{{"$inc", bson.D{{"level", 1}}}, {"$set", bson.D{{"uploadTime", time.Now().Unix()}}}}
 				if err := db.TeamCollection.FindOneAndUpdate(context.TODO(), filter, update).Err(); err != nil {
 					return nil, status.Error(codes.Unknown, "internal server error")
 				}

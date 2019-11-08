@@ -21,11 +21,12 @@ type Requests struct {
 }
 
 type Team struct {
-	ID        primitive.ObjectID `bson:"_id,omitempty"`
-	Name      string
-	Level     int
-	CreatorID primitive.ObjectID
-	Requests  []Requests
+	ID         primitive.ObjectID `bson:"_id,omitempty"`
+	Name       string
+	Level      int
+	CreatorID  primitive.ObjectID
+	Requests   []Requests
+	UploadTime int64
 }
 
 type Level struct {

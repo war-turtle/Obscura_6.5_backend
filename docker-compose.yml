@@ -5,7 +5,7 @@ services:
     build:
       context: ./users
       dockerfile: dev.Dockerfile
-    image: obscura-users-dev
+    image: warturtle/obscura-users-dev
     ports:
       - "9090:9090"
     volumes:
@@ -16,7 +16,7 @@ services:
     build:
       context: ./levels
       dockerfile: dev.Dockerfile
-    image: obscura-levels-dev
+    image: warturtle/obscura-levels-dev
     ports:
       - "9091:9091"
     volumes:
