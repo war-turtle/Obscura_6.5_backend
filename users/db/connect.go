@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-    "go.mongodb.org/mongo-driver/mongo"
-    "go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // variable to access collections
@@ -28,8 +28,8 @@ func Connect(uri string) {
 		log.Fatal(err)
 	}
 
-	UserCollection = client.Database("obscura").Collection("users")
-	TeamCollection = client.Database("obscura").Collection("teams")
+	UserCollection = client.Database("obscura7").Collection("users")
+	TeamCollection = client.Database("obscura7").Collection("teams")
 
 	log.Println("Connected")
 }

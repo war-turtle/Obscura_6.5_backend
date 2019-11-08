@@ -29,4 +29,5 @@ type Team struct {
 	CreatorID   primitive.ObjectID
 	Requests    []Requests
 	ImageNumber int32
+	UploadTime  int64
 }

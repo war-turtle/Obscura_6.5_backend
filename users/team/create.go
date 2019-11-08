@@ -3,16 +3,18 @@ package team
 import (
 	"context"
 	"log"
+	"time"
 
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"obscura-users-backend/db"
 	"obscura-users-backend/jwt"
-	
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+
 	configuration "obscura-users-backend/config"
 	pbUsers "obscura-users-backend/proto"
 )
@@ -35,13 +37,14 @@ func (TeamService) CreateTeam(ctx context.Context, req *pbUsers.CreateTeamReques
 				return nil, status.Error(codes.Unknown, "internal server error")
 			}
 
-			team = db.Team {
-				Name: req.GetName(),
-				CreatorID: creatorID,
+			team = db.Team{
+				Name:        req.GetName(),
+				CreatorID:   creatorID,
 				ImageNumber: req.GetImageNumber(),
-				Requests: []db.Requests{},
+				Requests:    []db.Requests{},
+				UploadTime:  time.Now().Unix(),
 			}
-	
+
 			res, err := db.TeamCollection.InsertOne(context.TODO(), team)
 			if err != nil {
 				return nil, status.Error(codes.Unknown, "internal server error")
@@ -62,20 +65,19 @@ func (TeamService) CreateTeam(ctx context.Context, req *pbUsers.CreateTeamReques
 			var user db.User
 			opt := options.FindOneAndUpdate().SetReturnDocument(options.After)
 			if err := db.UserCollection.FindOneAndUpdate(context.TODO(), filter, update, opt).Decode(&user); err != nil {
-				return nil, status.Error(codes.Unknown, "internal server error");
+				return nil, status.Error(codes.Unknown, "internal server error")
 			}
 
 			tokenSecret, err := jwt.CreateNewUserJwt(user, config["jwtSecret"])
 			if err != nil {
 				return nil, status.Error(codes.Unknown, "internal server error")
 			}
-	
+
 			return &pbUsers.JwtResponse{Jwt: tokenSecret}, nil
 		}
 
 		return nil, status.Error(codes.Unknown, "internal server error")
 	}
-	
+
 	return nil, status.Error(codes.Unknown, "team already exists")
 }
-
